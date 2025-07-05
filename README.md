@@ -1,5 +1,8 @@
 # askmydocs
 
+![Status](https://img.shields.io/badge/status-PoC-yellow)
+![License](https://img.shields.io/badge/license-GPLv3-blue)
+
 **askmydocs** é uma aplicação web open source que permite buscar e conversar com documentos em linguagem natural utilizando inteligência artificial (IA) com RAG (retrieval-augmented generation).
 
 Seu objetivo é transformar documentos estáticos em experiências interativas e acessíveis — preservando a **privacidade**, **qualidade** e com foco em desenvolvedores que preferem soluções **self-hosted**.
