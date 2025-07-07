@@ -1,0 +1,56 @@
+# Python / FastAPI
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/.mypy_cache/
+**/.pytest_cache/
+**/.venv/
+**/venv/
+**/env/
+**/.env
+**/.env.*
+**/instance/
+**/*.sqlite3
+**/alembic/versions/*.pyc
+**/.coverage
+**/coverage.xml
+**/htmlcov/
+**/.DS_Store
+
+# IDEs and editors
+**/.vscode/
+**/.idea/
+**/*.swp
+**/*~
+
+# Logs
+**/*.log
+
+# Angular / Node
+**/node_modules/
+**/dist/
+**/.angular/
+**/angular.json.backup
+**/.npm/
+**/package-lock.json
+**/yarn.lock
+
+# OS-specific
+**/Thumbs.db
+**/ehthumbs.db
+**/Icon?
+**/.Trash-*
+**/.fseventsd/
+**/.Spotlight-V100/
+**/.AppleDouble/
+**/.LSOverride
+
+# Docker
+**/docker-compose.override.yml
+!**/.docker/
+
+# Build / temp
+**/build/
+**/tmp/
+**/temp/
+**/logs/
