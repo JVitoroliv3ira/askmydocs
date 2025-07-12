@@ -1,5 +1,6 @@
 import typer
 from pathlib import Path
+from askmydocs_backend.pipeline.ask_documents import ask_documents_pipeline
 from askmydocs_backend.pipeline.index_documents import index_documents_pipeline
 
 app = typer.Typer(help="ask-my-docs CLI")
@@ -18,12 +19,23 @@ def index_command(
     if result.is_ok():
         typer.echo("Documentos indexados com sucesso!")
     else:
-        typer.secho(f"Ocorreu um erro ao indexar os documentos: {result.error}")
+        typer.secho(f"Ocorreu um erro ao indexar os documentos: {result.error}", err=True)
     
 
-@app.command("hello")
-def hello_command() -> None:
-    typer.echo("Hello, World!")
+@app.command("ask")
+def ask_command(
+    question: str = typer.Argument(..., help="Pergunta a ser feita"),
+    collection: str = typer.Option("public", help="Nome da coleção no Qdrant")
+) -> None:
+    result = ask_documents_pipeline(
+        question,
+        collection=collection
+    )
+
+    if result.is_ok():
+        typer.echo(result.ok)
+    else:
+        typer.secho(f"Ocorreu um erro ao buscar a resposta: {result.error}", err=True)
 
 if __name__ == '__main__':
     app()
