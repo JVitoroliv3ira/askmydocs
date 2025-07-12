@@ -6,13 +6,15 @@ authors = [
     {name = "JVitoroliv3ira",email = "jvitoroliveira0711@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<4"
 dependencies = [
     "fastapi (>=0.116.0,<0.117.0)",
     "typer (>=0.16.0,<0.17.0)",
     "sentence-transformers (>=5.0.0,<6.0.0)",
     "faiss-cpu (>=1.11.0,<2.0.0)",
-    "pydantic (>=2.11.7,<3.0.0)"
+    "pydantic (>=2.11.7,<3.0.0)",
+    "expression (>=5.6.0,<6.0.0)",
+    "pdfplumber (>=0.11.7,<0.12.0)"
 ]
 
 [tool.poetry]
