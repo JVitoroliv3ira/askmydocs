@@ -3,45 +3,47 @@
 ![Status](https://img.shields.io/badge/status-PoC-yellow)
 ![License](https://img.shields.io/badge/license-GPLv3-blue)
 
-**askmydocs** é uma aplicação web open source que permite buscar e conversar com documentos em linguagem natural utilizando inteligência artificial (IA) com RAG (retrieval-augmented generation).
+**askmydocs** é uma aplicação web open source que permite **buscar e conversar com documentos** em linguagem natural usando **IA com RAG** (retrieval-augmented generation).
 
-Seu objetivo é transformar documentos estáticos em experiências interativas e acessíveis — preservando a **privacidade**, **qualidade** e com foco em desenvolvedores que preferem soluções **self-hosted**.
+O objetivo é transformar documentos estáticos em experiências interativas — com foco em **qualidade**, **privacidade** e **autonomia para desenvolvedores self-hosted**.
 
 ---
 
 ## Propósito
 
-O askmydocs foi criado para quem precisa:
+O askmydocs foi feito para quem precisa:
 
-- Buscar rapidamente trechos relevantes de documentos técnicos, jurídicos ou acadêmicos
-- Fazer perguntas em linguagem natural e receber respostas baseadas em fontes reais
-- Citar a origem dos dados para garantir rastreabilidade e confiança
-- Ter controle total sobre os dados — sem depender de serviços externos ou contas
+- Encontrar rapidamente trechos relevantes de documentos técnicos, jurídicos ou acadêmicos  
+- Fazer perguntas em linguagem natural com respostas baseadas em **fontes reais**
+- Obter respostas com **citação da origem**, garantindo rastreabilidade e confiança  
+- Rodar tudo **localmente**, sem depender de serviços externos ou login em nuvem
 
 ---
 
-## Stack
+## Stack Tecnológica
 
 - **Backend:** FastAPI (Python)
-- **Banco de dados vetorial:** PostgreSQL + pgvector
-- **Frontend:** React com TypeScript (Vite ou Next.js)
-- **LLM:** OpenAI (GPT-3.5 / GPT-4), com suporte futuro a vLLM e modelos locais
+- **Frontend:** React
+- **Armazenamento vetorial:** Qdrant
+- **LLM:** OpenAI (GPT-3.5 / GPT-4) por enquanto — será possível usar **qualquer LLM** (ex: Ollama, vLLM, modelos locais, etc.)
 
 ---
 
-## Componentes planejados
+## Componentes
 
-- Upload de documentos (`.pdf`, `.docx`, `.txt`, etc.)
-- Extração e chunking dos textos
-- Geração de embeddings e armazenamento vetorial
-- Busca top-K dos trechos mais relevantes
-- Montagem de prompt e chamada ao LLM
-- Interface web com upload, chat e visualização com fonte citada
+- [x] Upload e leitura de documentos (atualmente apenas `.pdf`)
+- [x] Chunking inteligente dos textos com overlap
+- [x] Geração de embeddings com Sentence Transformers
+- [x] Armazenamento vetorial local com FAISS ou Qdrant
+- [x] Recuperação top-K dos trechos mais relevantes
+- [x] Geração de resposta com IA baseada no contexto
+- [ ] Interface web com upload, chat e visualização com fonte citada
 
 ---
 
 ## Filosofia
 
-- **Código aberto:** licenciado sob GPL-v3
-- **Foco em desenvolvedores:** fácil de rodar, estender e contribuir
-- **Independência:** sem vendor lock-in ou dependência de serviços fechados
+- **100% open source:** Licenciado sob GPL-v3
+- **Foco em desenvolvedores:** Fácil de rodar, entender e estender
+- **Privacidade em primeiro lugar:** Nenhum dado é enviado para terceiros sem consentimento
+- **Flexível:** Arquitetura preparada para plugar qualquer LLM, local ou na nuvem
