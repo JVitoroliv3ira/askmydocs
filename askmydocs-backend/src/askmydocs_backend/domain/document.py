@@ -14,3 +14,8 @@ class Chunk:
     document_path: Path
     chunk_id: str
     metadata: dict[str, Any]
+
+@dataclass
+class EmbeddedChunk:
+    chunk: Chunk
+    embedding: list[float]
