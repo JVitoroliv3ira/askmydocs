@@ -54,3 +54,7 @@
 **/tmp/
 **/temp/
 **/logs/
+
+# Qdrant
+
+**/qdrant_storage
