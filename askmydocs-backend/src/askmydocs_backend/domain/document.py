@@ -7,3 +7,10 @@ class RawDocument:
     content: str
     path: Path
     metadata: dict[str, Any]
+
+@dataclass
+class Chunk:
+    text: str
+    document_path: Path
+    chunk_id: str
+    metadata: dict[str, Any]
