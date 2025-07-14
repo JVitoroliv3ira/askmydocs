@@ -25,11 +25,15 @@ def index_command(
 @app.command("ask")
 def ask_command(
     question: str = typer.Argument(..., help="Pergunta a ser feita"),
-    collection: str = typer.Option("public", help="Nome da coleção no Qdrant")
+    document_name: str = typer.Argument(..., help="Nome do documento para filtrar a busca"),
+    collection: str = typer.Option("public", help="Nome da coleção no Qdrant"),
+    top_k: int = typer.Option(5, help="Quantidade de chunks similares a buscar")
 ) -> None:
     result = ask_documents_pipeline(
         question,
-        collection=collection
+        document_name,
+        collection,
+        top_k
     )
 
     if result.is_ok():
