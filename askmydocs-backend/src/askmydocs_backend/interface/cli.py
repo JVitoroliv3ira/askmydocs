@@ -1,8 +1,5 @@
 import typer
 from pathlib import Path
-from askmydocs_backend.pipeline.ask_documents import ask_documents_pipeline
-from askmydocs_backend.pipeline.delete_collections import delete_collections_pipeline
-from askmydocs_backend.pipeline.index_documents import index_documents_pipeline
 
 app = typer.Typer(help="ask-my-docs CLI")
 
@@ -11,6 +8,8 @@ def index_command(
     path: Path = typer.Argument(..., help="Caminho para o arquivo ou diretório com PDFs"),
     collection: str = typer.Option("public", help="Nome da coleção no Qdrant")
 ) -> None:
+    from askmydocs_backend.pipeline.index_documents import index_documents_pipeline
+
     result = index_documents_pipeline(
         path,
         collection
@@ -31,6 +30,8 @@ def ask_command(
     collection: str = typer.Option("public", help="Nome da coleção no Qdrant"),
     top_k: int = typer.Option(5, help="Quantidade de chunks similares a buscar")
 ) -> None:
+    from askmydocs_backend.pipeline.ask_documents import ask_documents_pipeline
+    
     result = ask_documents_pipeline(
         question,
         document_name,
@@ -47,6 +48,8 @@ def ask_command(
 
 @app.command("clean")
 def clean_command() -> None:
+    from askmydocs_backend.pipeline.delete_collections import delete_collections_pipeline
+
     result = delete_collections_pipeline()
     
     if result.is_ok():
