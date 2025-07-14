@@ -1,6 +1,7 @@
 import typer
 from pathlib import Path
 from askmydocs_backend.pipeline.ask_documents import ask_documents_pipeline
+from askmydocs_backend.pipeline.delete_collections import delete_collections_pipeline
 from askmydocs_backend.pipeline.index_documents import index_documents_pipeline
 
 app = typer.Typer(help="ask-my-docs CLI")
@@ -18,8 +19,9 @@ def index_command(
     
     if result.is_ok():
         typer.echo("Documentos indexados com sucesso!")
-    else:
-        typer.secho(f"Ocorreu um erro ao indexar os documentos: {result.error}", err=True)
+        return
+    
+    typer.secho(f"Ocorreu um erro ao indexar os documentos: {result.error}", err=True)
     
 
 @app.command("ask")
@@ -38,8 +40,21 @@ def ask_command(
 
     if result.is_ok():
         typer.echo(result.ok)
-    else:
-        typer.secho(f"Ocorreu um erro ao buscar a resposta: {result.error}", err=True)
+        return
+    
+    typer.secho(f"Ocorreu um erro ao buscar a resposta: {result.error}", err=True)
+
+
+@app.command("clean")
+def clean_command() -> None:
+    result = delete_collections_pipeline()
+    
+    if result.is_ok():
+        typer.echo("Base de dados limpa com sucesso!")
+        return
+    
+    typer.secho(f"Erro ao limpar a base de dados: {result.error}", err=True)
+    
 
 if __name__ == '__main__':
     app()
