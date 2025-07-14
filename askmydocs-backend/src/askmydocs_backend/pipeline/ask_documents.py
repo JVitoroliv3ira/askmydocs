@@ -7,6 +7,7 @@ from askmydocs_backend.vectorstore.qdrant_store import create_client, query_simi
 
 def ask_documents_pipeline(
     question: str,
+    document_name: str,
     collection: str = "public",
     top_k: int = 5
 ) -> Result[str, Exception]:
@@ -14,7 +15,7 @@ def ask_documents_pipeline(
         embedding = embed_question(question)
 
         client = create_client()
-        results = query_similar_chunks(client, collection, embedding, limit=top_k)
+        results = query_similar_chunks(client, collection, embedding, document_name, limit=top_k)
 
         context_chunks = [r.payload["text"] for r in results]
 
