@@ -87,3 +87,8 @@ def scored_point_to_chunk(point: ScoredPoint) -> Chunk:
             if k not in {"text", "document_path"}
         },
     )
+
+def delete_all_collections(client: QdrantClient) -> None:
+    for collection in client.get_collections().collections:
+        client.delete_collection(collection.name)
+    
