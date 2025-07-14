@@ -1,8 +1,17 @@
+import os
 from uuid import uuid4
-from typing import List
+from typing import List, Optional
 from pathlib import Path
 from qdrant_client import QdrantClient
-from qdrant_client.models import PointStruct, Distance, VectorParams, ScoredPoint
+from qdrant_client.models import (
+    PointStruct,
+    Distance,
+    VectorParams,
+    ScoredPoint,
+    Filter,
+    FieldCondition,
+    MatchValue
+)
 
 from askmydocs_backend.domain.document import EmbeddedChunk, Chunk
 
@@ -20,12 +29,16 @@ def setup_client(client: QdrantClient, name: str, dim: int) -> None:
 
 
 def embed_chunk_to_point(chunk: EmbeddedChunk) -> PointStruct:
+    document_path = str(chunk.chunk.document_path)
+    document_name = os.path.basename(document_path)
+    
     return PointStruct(
         id=str(uuid4()),
         vector=chunk.embedding,
         payload={
             "text": chunk.chunk.text,
-            "document_path": str(chunk.chunk.document_path),
+            "document_path": document_path,
+            "document_name": document_name,
             **chunk.chunk.metadata,
         },
     )
@@ -44,12 +57,22 @@ def query_similar_chunks(
     client: QdrantClient,
     collection: str,
     query_embedding: List[float],
+    document_name: Optional[str] = None,
     limit: int = 5,
 ) -> List[ScoredPoint]:
+    conditions = [
+        FieldCondition(
+            key="document_name",
+            match=MatchValue(value=document_name)
+        )
+    ] if document_name else None
+        
+    
     return client.search(
         collection_name=collection,
         query_vector=query_embedding,
         limit=limit,
+        query_filter=Filter(must=conditions) if conditions else None
     )
 
 
