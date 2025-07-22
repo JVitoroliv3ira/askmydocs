@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import NotFoundImage from "../assets/404.svg";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 export default function NotFound() {
+  useDocumentTitle("Página não encontrada - AskMyDocs");
+  
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-base-100 text-base-content px-6 py-12 space-y-12">
       <div className="text-lg font-semibold opacity-80 select-none">
