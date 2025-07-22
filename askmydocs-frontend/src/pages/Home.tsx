@@ -1,4 +1,5 @@
 import Layout from "../components/Layout/Layout";
+import UploadArea from "../components/UploadArea/UploadArea";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <h1>Hello, World!</h1>
+      <UploadArea onFilesSelected={(f) => { console.log(f) }} />
     </Layout>
   );
 }
